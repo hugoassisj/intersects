@@ -1,21 +1,69 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Where do they intersect?</title>
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-  </style>
-  <script src="../p5.js"></script>
-  <script src="main.js"></script>
+  <meta name="description"
+    content="Interactive line intersection visualization: find where a line through two points meets a desired x-coordinate, with movable constraints.">
+  <meta property="og:title" content="Line Intersection — Where do they intersect?">
+  <meta property="og:description"
+    content="Interactive line intersection visualization: find where a line through two points meets a desired x-coordinate, with movable constraints.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Line Intersection — Where do they intersect?">
+  <meta name="twitter:description"
+    content="Interactive line intersection visualization: find where a line through two points meets a desired x-coordinate, with movable constraints.">
+  <title>Line Intersection: Where do they intersect?</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
 </head>
 
 <body>
+  <main class="app" role="main">
+    <div class="top-bar">
+      <header class="app-header">
+        <h1 class="app-title">Line Intersection</h1>
+        <p class="app-tagline">Where does the line meet a given x?</p>
+      </header>
+      <div class="instructions-bar" role="doc" aria-label="How to use">
+        <span class="instructions-text">Drag <strong>P1</strong> or <strong>P2</strong> to move the line; sliders set
+          target x and Y range.</span>
+        <button type="button" id="export-png-btn" class="btn btn-export">Export PNG</button>
+      </div>
+    </div>
+
+    <div id="sketch-container" class="sketch-container"
+      aria-label="Interactive diagram: line intersection with constraints. Drag the two endpoints or use the sliders to change the target x and constraints.">
+    </div>
+
+    <aside class="controls-panel" aria-label="Controls">
+      <section class="control-card" aria-labelledby="constraints-heading">
+        <div class="control-header">
+          <h2 id="constraints-heading" class="control-heading">Constraints</h2>
+          <output id="constraints-value" class="control-value" for="constraints-slider" aria-live="polite"></output>
+        </div>
+        <label for="constraints-slider" class="control-label">Y range (allowed band height)</label>
+        <input type="range" id="constraints-slider" class="control-slider" min="1" max="4" step="0.1" value="3"
+          aria-valuetext="Constraints">
+      </section>
+      <section class="control-card" aria-labelledby="desired-x-heading">
+        <div class="control-header">
+          <h2 id="desired-x-heading" class="control-heading">Target X</h2>
+          <output id="desired-x-value" class="control-value" for="desired-x-slider" aria-live="polite"></output>
+        </div>
+        <label for="desired-x-slider" class="control-label">Vertical line position (within canvas margin)</label>
+        <input type="range" id="desired-x-slider" class="control-slider" min="0" max="1000" step="1" value="125"
+          aria-valuetext="Desired X">
+      </section>
+    </aside>
+  </main>
+  <script src="main.js"></script>
 </body>
 
 </html>
